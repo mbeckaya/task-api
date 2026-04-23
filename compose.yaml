@@ -1,0 +1,22 @@
+services:
+  db:
+    image: mariadb:latest
+    volumes:
+      - vol-task-db:/var/lib/mysql
+    ports:
+      - "3306:3306" 
+    environment:
+      MARIADB_ROOT_PASSWORD: dbpassword
+      MARIADB_DATABASE: tasks
+    restart: always
+
+  backend:
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    restart: always
+
+volumes:
+  vol-task-db:
