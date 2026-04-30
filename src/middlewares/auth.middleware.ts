@@ -5,7 +5,7 @@ export interface AuthRequest extends Request {
   user?: string | jwt.JwtPayload;
 }
 
-export const authMiddleware = (
+export const requireAuth = (
   req: AuthRequest,
   res: Response,
   next: NextFunction
